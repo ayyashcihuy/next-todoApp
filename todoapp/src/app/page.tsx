@@ -3,9 +3,9 @@ import TodoContainer from "@/components/Todo/todoContainer"
 import FinishedContainer from "@/components/Finished/finishedContainer"
 import EmptyContainer from "@/components/empty/emptyContainer"
 import ErrorBoundary from "@/errors/ErrorBoundary"
+import Form from "@/components/form/Form"
 import { getTodo } from "@/components/Todo"
 import { getFinishedTodo } from "@/components/Finished"
-import ErrorDisplay from "@/errors/ErrorDisplay"
 
 
 export default async function Home() {
@@ -13,36 +13,37 @@ export default async function Home() {
   const finishedTodos = await getFinishedTodo();
   
   return (
-    <ErrorBoundary>
-      <div className="p-7">
-        <header className='p-7 flex flex-row justify-between items-center'>
-          <h1 className='text-4xl font-bold'>TodoApp</h1>
-          <div>
-            <button className="hover:bg-white hover:text-black p-2 rounded transition duration-700">+ Add Todo</button>
-          </div>  
-        </header>
-        <div className="flex flex-col gap-y-4">
-          <Profile />
-          <div className="flex flex-col gap-y-2">
-            <h1 className="px-7 mb-2 font-bold text-xl">Things you want to do ({todos.length})</h1>
-            { todos && todos.length > 0 ? 
-              todos.map((todo) => (
-                <TodoContainer key={todo.id} {...todo} />
-              )) :
-                <EmptyContainer />
-            }
+    <div className="p-7">
+        <ErrorBoundary>
+          <Form />
+          <header className='p-7 flex flex-row justify-between items-center'>
+            <h1 className='text-4xl font-bold'>TodoApp</h1>
+            <div>
+              <button className="hover:bg-white hover:text-black p-2 rounded transition duration-700">+ Add Todo</button>
+            </div>  
+          </header>
+          <div className="flex flex-col gap-y-4">
+            <Profile />
+            <div className="flex flex-col gap-y-2">
+              <h1 className="px-7 mb-2 font-bold text-xl">Things you want to do ({todos.length})</h1>
+              { todos && todos.length > 0 ? 
+                todos.map((todo) => (
+                  <TodoContainer key={todo.id} {...todo} />
+                )) :
+                  <EmptyContainer />
+              }
+            </div>
+            <div className="flex flex-col gap-y-2">
+              <h1 className="px-7 my-2 font-bold text-xl">Finished business ({finishedTodos.length})</h1>
+              { finishedTodos && finishedTodos.length > 0 ? 
+                finishedTodos.map((todo) => (
+                  <FinishedContainer key={todo.id} {...todo} />
+                )) :
+                  <EmptyContainer />
+              }
+            </div>
           </div>
-          <div className="flex flex-col gap-y-2">
-            <h1 className="px-7 my-2 font-bold text-xl">Finished business ({finishedTodos.length})</h1>
-            { finishedTodos && finishedTodos.length > 0 ? 
-              finishedTodos.map((todo) => (
-                <FinishedContainer key={todo.id} {...todo} />
-              )) :
-                <EmptyContainer />
-            }
-          </div>
-        </div>
+        </ErrorBoundary>
       </div>
-    </ErrorBoundary>
   )
 }

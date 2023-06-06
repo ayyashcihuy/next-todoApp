@@ -7,4 +7,15 @@ Hi, so this project i create to make me understand more about next js and also t
 
 Okay so heres my first update: i already create basic ui for the todos with server side function to access database using prisma for get todo. and also i create ui for detect if the data from db was empty. 
 
+## 06/06/2023
+
+### change:
+
+1. read and create basic error boundaries. as i know error boundary is perfectly used to unexpected error that make your apps actually cannot being accessed.
+2. create a little basic form for add todo.
+
+### next:
+
+1. install redux and state management in apps. will be good if i can implement it to control form modal
+
 xoxo

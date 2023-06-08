@@ -1,25 +1,29 @@
+'use client'
+
+import { useState } from "react"
 import Profile from "@/components/Profile/profile"
+import { todo } from "@/components/model/model"
 import TodoContainer from "@/components/Todo/todoContainer"
 import FinishedContainer from "@/components/Finished/finishedContainer"
 import EmptyContainer from "@/components/empty/emptyContainer"
 import ErrorBoundary from "@/errors/ErrorBoundary"
 import Form from "@/components/form/Form"
-import { getTodo } from "@/components/Todo"
-import { getFinishedTodo } from "@/components/Finished"
 
-
-export default async function Home() {
-  const todos = await getTodo();
-  const finishedTodos = await getFinishedTodo();
+export default function Home() {
+  const [toggle, setToggle] = useState<boolean>(false)
+  const [todos, _setTodos] = useState<todo[]>([]);
+  const [finishedTodos, _setFinishedTodos] = useState<todo[]>([]);
   
   return (
     <div className="p-7">
         <ErrorBoundary>
-          <Form />
+          {
+            toggle ? <Form /> : null
+          }
           <header className='p-7 flex flex-row justify-between items-center'>
             <h1 className='text-4xl font-bold'>TodoApp</h1>
             <div>
-              <button className="hover:bg-white hover:text-black p-2 rounded transition duration-700">+ Add Todo</button>
+              <button onClick={() => setToggle(true)} className="hover:bg-white hover:text-black p-2 rounded transition duration-700">+ Add Todo</button>
             </div>  
           </header>
           <div className="flex flex-col gap-y-4">

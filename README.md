@@ -18,4 +18,8 @@ Okay so heres my first update: i already create basic ui for the todos with serv
 
 1. install redux and state management in apps. will be good if i can implement it to control form modal
 
+## 07/06/2023 & 08/06/2023
+
+when you try your best but you dont succeed. next 13 with unstable feature really2 make redux implementation hard :(
+
 xoxo

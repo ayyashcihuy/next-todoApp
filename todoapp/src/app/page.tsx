@@ -8,11 +8,19 @@ import FinishedContainer from "@/components/Finished/finishedContainer"
 import EmptyContainer from "@/components/empty/emptyContainer"
 import ErrorBoundary from "@/errors/ErrorBoundary"
 import Form from "@/components/form/Form"
+import { updateToggleCreate } from "@/store/Slice/toggleSlice"
+import { useAppDispatch, useAppSelector } from "@/store/hooks"
+import { RootState } from "@/store/store"
 
 export default function Home() {
-  const [toggle, setToggle] = useState<boolean>(false)
+  const dispatch = useAppDispatch();
+  const toggle = useAppSelector((state: RootState) => state.todo.toggleCreate)
   const [todos, _setTodos] = useState<todo[]>([]);
   const [finishedTodos, _setFinishedTodos] = useState<todo[]>([]);
+  
+  function setToggle(stats: boolean): void {
+    dispatch(updateToggleCreate(stats))
+  }
   
   return (
     <div className="p-7">

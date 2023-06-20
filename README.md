@@ -23,3 +23,7 @@ Okay so heres my first update: i already create basic ui for the todos with serv
 when you try your best but you dont succeed. next 13 with unstable feature really2 make redux implementation hard :(
 
 xoxo
+
+## 20/06/2023
+
+Hi, im back. so i just update my redux store and apply it for toggle form create. my next mission is to fetch prisma server using next and use it in page 
